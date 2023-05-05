@@ -2,8 +2,10 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const express = require('express')
 const app = express();
+const cors = require('cors')
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
+app.use(cors())
 const sendMail = async (req, res) => {
     try {
         var data = req.body;
@@ -19,7 +21,7 @@ const sendMail = async (req, res) => {
             <p>${subject}</p>
             <br>
             <h4>Order Details</h4>
-            <p>${body.book_name}</p>
+            <p>Product Name: ${body.book_name}</p>
             <p>Price: ${body.price}</p>
             `
         };
